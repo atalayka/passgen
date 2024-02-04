@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,10 @@ namespace passgen
             InitializeComponent();
         }
 
-        PasswordCharacters characters = new();
-        Random random = new Random();
-
+        public static PasswordCharacters characters = new();
+        public static Random random = new Random();
+        public static string password = "";
+        public static PasswordGenerator passwordGenerator = new();
 
 
         public class PasswordCharacters
@@ -37,14 +39,51 @@ namespace passgen
             public readonly string[] Numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
             public readonly string[] Symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", ";", "\"", "'", "<", ">", "?", "/"];
         }
-
-        public string Generated()
+        public class PasswordGenerator
         {
-            return "";
+            public void UpperCaseGenerated()
+            {
+                int RIndex = random.Next(0, characters.UpperChars.Length);
+                password += characters.UpperChars[RIndex];
+            }
+            public void LowerCaseGenerated()
+            {
+                int RIndex = random.Next(0, characters.LowerChars.Length);
+                password += characters.LowerChars[RIndex];
+            }
+            public void NumberCaseGenerated()
+            {
+                int RIndex = random.Next(0, characters.Numbers.Length);
+                password += characters.Numbers[RIndex];
+            }
+            public void SymbolCaseGenerated()
+            {
+                int RIndex = random.Next(0, characters.Symbols.Length);
+                password += characters.Symbols[RIndex];
+            }
         }
-
         private void btnGenerate_Click(object sender, RoutedEventArgs e)
         {
+            password = "";
+            txtResult.Clear();
+            if (checkLowerCase.IsChecked == true)
+            {
+                passwordGenerator.LowerCaseGenerated();
+            }
+            if (checkUpperCase.IsChecked == true)
+            {
+                passwordGenerator.UpperCaseGenerated();
+            }
+            if (checkSymbols.IsChecked == true)
+            {
+                passwordGenerator.SymbolCaseGenerated();
+            }
+            if (checkNumbers.IsChecked == true)
+            {
+                passwordGenerator.NumberCaseGenerated();
+            }
+            txtResult.Text = password;
         }
     }
 }
+
