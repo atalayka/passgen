@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:passgen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="393,233,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="405,191,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="341,249,0,0" VerticalAlignment="Top" Click="btnGenerate_Click"/>
+        <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" Margin="361,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="checkUpperCase" Foreground="#16c60c" Content="uppercase" Margin="371,170,-371,-170"/>
+        <CheckBox x:Name="checkLowerCase" Foreground="#16c60c" Content="lowercase" Margin="452,170,-452,-170" IsChecked="True"/>
+        <CheckBox x:Name="checkNumbers" Foreground="#16c60c" Content="numbers" Margin="528,172,-528,-172"/>
+        <CheckBox x:Name="checkSymbols" Foreground="#16c60c" Content="symbols" Margin="599,169,-599,-169"/>
 
     </Grid>
 </Window>
