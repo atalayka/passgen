@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace passgen;
 public partial class MainWindow : Window
 {
     public static int passwordLength = 0;
     public static List<string> password = [];
+    public static List<string> result = [];
 
     public MainWindow()
     {
@@ -92,95 +81,94 @@ public partial class MainWindow : Window
         }
     }
 
+    public class Shuffle(List<string> password)
+    {
+        public List<string> ShuffleList(List<string> password)
+        {
+            return new List<string>(password.OrderBy(x => Guid.NewGuid()));
+        }
+    }
+
     int counter = 0;
     private void btnGenerate_Click(object sender, RoutedEventArgs e)
     {
         passwordLength = (int)CharCount.Value;
         if (counter % 2 == 0)
         {
+            txtResult.Text = "";
             if (checkLowerCase.IsChecked == true)
             {
-
-                txtResult.Text = "";
                 GenerateLowerCase generateLowerCase = new GenerateLowerCase();
                 generateLowerCase.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                counter++;
-                password.Clear();
             }
             if (checkUpperCase.IsChecked == true)
             {
-
-                txtResult.Text = "";
                 GenerateUpperCase generateUpperCase = new GenerateUpperCase();
                 generateUpperCase.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                counter++;
-                password.Clear();
             }
             if (checkNumbers.IsChecked == true)
             {
-
-                txtResult.Text = "";
                 GenerateNumbers generateNumbers = new GenerateNumbers();
                 generateNumbers.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                counter++;
-                password.Clear();
             }
             if (checkSymbols.IsChecked == true)
             {
-
-                txtResult.Text = "";
                 GenerateSymbols generateSymbols = new GenerateSymbols();
                 generateSymbols.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                counter++;
-                password.Clear();
+            }
+            Shuffle shuffle = new Shuffle(password);
+            password = shuffle.ShuffleList(password);
+
+            Random random = new Random();
+            for (int i = 0; i < passwordLength; i++)
+            {
+                int randomIndex = random.Next(password.Count - 1);
+                result.Add(password[randomIndex]);
             }
 
-
+            txtResult.Text = string.Join("", result.ToArray());
+            counter++;
+            password.Clear();
+            result.Clear();
         }
+
         else
         {
+            txtResult.Text = "";
             if (checkLowerCase.IsChecked == true)
             {
-                txtResult.Text = "";
                 GenerateLowerCase generateLowerCase = new GenerateLowerCase();
                 generateLowerCase.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                password.Clear();
             }
             if (checkUpperCase.IsChecked == true)
             {
-
-                txtResult.Text = "";
                 GenerateUpperCase generateUpperCase = new GenerateUpperCase();
                 generateUpperCase.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                counter++;
-                password.Clear();
             }
             if (checkNumbers.IsChecked == true)
             {
-
-                txtResult.Text = "";
                 GenerateNumbers generateNumbers = new GenerateNumbers();
                 generateNumbers.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                counter++;
-                password.Clear();
             }
             if (checkSymbols.IsChecked == true)
             {
-
-                txtResult.Text = "";
                 GenerateSymbols generateSymbols = new GenerateSymbols();
                 generateSymbols.GeneratePassword();
-                txtResult.Text = string.Join("", password.ToArray());
-                counter++;
-                password.Clear();
             }
+            Shuffle shuffle = new Shuffle(password);
+            password = shuffle.ShuffleList(password);
+
+            Random random = new Random();
+            for (int i = 0; i < passwordLength; i++)
+            {
+                int randomIndex = random.Next(password.Count - 1);
+                result.Add(password[randomIndex]);
+            }
+
+            txtResult.Text = string.Join("", result.ToArray());
+            counter++;
+            password.Clear();
+            result.Clear();
         }
     }
 }
