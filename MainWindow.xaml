@@ -8,7 +8,7 @@
         Title="MainWindow" Height="400" Width="550" Background="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Grid Width="550" Height="400">
 
-        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="263,279,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="263,279,0,0" VerticalAlignment="Top" Click="btnGenerate_Click"/>
         <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" Margin="224,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <CheckBox x:Name="checkLowerCase" Foreground="#16c60c" Content="lowercase" Margin="129,194,0,0" IsChecked="True" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
         <CheckBox x:Name="checkNumbers" Foreground="#16c60c" Content="numbers" Margin="287,193,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
