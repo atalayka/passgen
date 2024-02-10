@@ -37,9 +37,8 @@ public partial class MainWindow : Window
 
     public class GenerateLowerCase : IGenerate
     {
-        private readonly string[] LowerChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         private Random random = new Random();
-
+        private readonly string[] LowerChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         public void GeneratePassword()
         {
             for (int i = 0; i < passwordLength; i++)
@@ -52,31 +51,44 @@ public partial class MainWindow : Window
 
     public class GenerateUpperCase : IGenerate
     {
+        private Random random = new Random();
         private readonly string[] UpperChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
         public void GeneratePassword()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < passwordLength; i++)
+            {
+                int randomIndex = random.Next(UpperChars.Length - 1);
+                password.Add(UpperChars[randomIndex]);
+            }
         }
     }
 
     public class GenerateNumbers : IGenerate
     {
+        private Random random = new Random();
         private readonly string[] Numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
         public void GeneratePassword()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < passwordLength; i++)
+            {
+                int randomIndex = random.Next(Numbers.Length - 1);
+                password.Add(Numbers[randomIndex]);
+            }
         }
     }
 
     public class GenerateSymbols : IGenerate
     {
+        private Random random = new Random();
         private readonly string[] Symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", ";", "\"", "'", "<", ">", "?", "/"];
-
         public void GeneratePassword()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < passwordLength; i++)
+            {
+                int randomIndex = random.Next(Symbols.Length - 1);
+                password.Add(Symbols[randomIndex]);
+            }
         }
     }
 
@@ -84,25 +96,92 @@ public partial class MainWindow : Window
     private void btnGenerate_Click(object sender, RoutedEventArgs e)
     {
         passwordLength = (int)CharCount.Value;
-
         if (counter % 2 == 0)
         {
-            txtResult.Text = "";
-            GenerateLowerCase generateLowerCase = new GenerateLowerCase();
-            generateLowerCase.GeneratePassword();
-            txtResult.Text = string.Join("", password.ToArray());
-            counter++;
-            password.Clear();
+            if (checkLowerCase.IsChecked == true)
+            {
+
+                txtResult.Text = "";
+                GenerateLowerCase generateLowerCase = new GenerateLowerCase();
+                generateLowerCase.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+            }
+            if (checkUpperCase.IsChecked == true)
+            {
+
+                txtResult.Text = "";
+                GenerateUpperCase generateUpperCase = new GenerateUpperCase();
+                generateUpperCase.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+            }
+            if (checkNumbers.IsChecked == true)
+            {
+
+                txtResult.Text = "";
+                GenerateNumbers generateNumbers = new GenerateNumbers();
+                generateNumbers.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+            }
+            if (checkSymbols.IsChecked == true)
+            {
+
+                txtResult.Text = "";
+                GenerateSymbols generateSymbols = new GenerateSymbols();
+                generateSymbols.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+            }
+
+
         }
         else
         {
-            txtResult.Text = "";
-            GenerateLowerCase generateLowerCase = new GenerateLowerCase();
-            generateLowerCase.GeneratePassword();
-            txtResult.Text = string.Join("", password.ToArray());
-            password.Clear();
-        }
+            if (checkLowerCase.IsChecked == true)
+            {
+                txtResult.Text = "";
+                GenerateLowerCase generateLowerCase = new GenerateLowerCase();
+                generateLowerCase.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                password.Clear();
+            }
+            if (checkUpperCase.IsChecked == true)
+            {
 
+                txtResult.Text = "";
+                GenerateUpperCase generateUpperCase = new GenerateUpperCase();
+                generateUpperCase.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+            }
+            if (checkNumbers.IsChecked == true)
+            {
+
+                txtResult.Text = "";
+                GenerateNumbers generateNumbers = new GenerateNumbers();
+                generateNumbers.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+            }
+            if (checkSymbols.IsChecked == true)
+            {
+
+                txtResult.Text = "";
+                GenerateSymbols generateSymbols = new GenerateSymbols();
+                generateSymbols.GeneratePassword();
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+            }
+        }
     }
 }
 
