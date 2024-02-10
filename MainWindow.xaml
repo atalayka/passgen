@@ -8,7 +8,7 @@
         Title="MainWindow" Height="400" Width="550" Background="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Grid Width="550" Height="400">
 
-        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="264,260,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="263,279,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" Margin="224,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
         <CheckBox x:Name="checkLowerCase" Foreground="#16c60c" Content="lowercase" Margin="129,194,0,0" IsChecked="True" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
         <CheckBox x:Name="checkNumbers" Foreground="#16c60c" Content="numbers" Margin="287,193,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -16,8 +16,7 @@
         <CheckBox x:Name="checkUpperCase" Foreground="#16c60c" Content="uppercase" Margin="209,193,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
         <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" Margin="341,223,189,157" />
-        <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Margin="217,224,0,0" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20">
-        </Slider>
+        <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Margin="218,224,0,0" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
 
     </Grid>
 </Window>
