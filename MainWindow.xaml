@@ -8,15 +8,20 @@
         Title="MainWindow" Height="400" Width="550" Background="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Grid Width="550" Height="400">
 
-        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="263,279,0,0" VerticalAlignment="Top" Click="btnGenerate_Click"/>
-        <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" Margin="198,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="33" Background="{x:Null}"/>
-        <CheckBox x:Name="checkLowerCase" Foreground="#16c60c" Content="lowercase" Margin="129,194,0,0" IsChecked="True" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
-        <CheckBox x:Name="checkNumbers" Foreground="#16c60c" Content="numbers" Margin="287,193,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <CheckBox x:Name="checkSymbols" Foreground="#16c60c" Content="symbols" Margin="360,193,0,0" Width="75" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkUpperCase" Foreground="#16c60c" Content="uppercase" Margin="209,193,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="252,234,0,0" VerticalAlignment="Top" Click="btnGenerate_Click"/>
+        <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" Margin="176,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
+        <CheckBox x:Name="checkLowerCase" Foreground="#16c60c" Content="lowercase" Margin="131,176,0,0" IsChecked="True" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+        <CheckBox x:Name="checkNumbers" Foreground="#16c60c" Content="numbers" Margin="289,174,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <CheckBox x:Name="checkSymbols" Foreground="#16c60c" Content="symbols" Margin="362,174,0,0" Width="75" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkUpperCase" Foreground="#16c60c" Content="uppercase" Margin="211,174,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-        <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" Margin="341,223,189,157" />
-        <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Margin="218,224,0,0" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
+        <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" Margin="332,206,198,174" />
+        <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Margin="210,208,0,0" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
+        <Button x:Name="copyToClipB" HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="360,132,0,0" VerticalAlignment="Top" Width="30" Height="30">
+            <Button.Background>
+                <ImageBrush ImageSource="/clipboard.png"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>
