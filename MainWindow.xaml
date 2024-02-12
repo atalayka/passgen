@@ -37,20 +37,55 @@
             </Setter>
         </Style>
         <!-- Define a style for the CheckBox -->
-
+        <!-- Define a style for the Button -->
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="BorderBrush" Value="#16c60c"/>
+            <Setter Property="BorderThickness" Value="1"    />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Define a style for the Button -->
+        <!-- Define a style for the Slider -->
+        
+        <!-- Define a style for the Slider -->
+        <!-- Define a style for the Textbox -->
+        <Style x:Key="CustomTextboxStyle" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#16c60c"/>
+            <Setter Property="Cursor" Value="None"/>
+        </Style>
+        <!-- Define a style for the Textbox -->
     </Window.Resources>
 
     <Grid Width="550" Height="400">
-        
+
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            
+
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Margin="0,0,0,5">
-                <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Center" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
-                <Button x:Name="copyToClipB" HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="5,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="copyToClipB_Click">
+                <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Center" Style="{StaticResource CustomTextboxStyle}" IsReadOnly="True" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
+                <Button x:Name="Rectangle"  HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="5,2.5,0,0" VerticalAlignment="Top" Width="30" Height="30">
                     <Button.Background>
                         <ImageBrush ImageSource="/clipboard.png"/>
                     </Button.Background>
                 </Button>
+                <Button x:Name="copyToClipB" Style="{StaticResource CustomButtonStyle}" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-31,0,0,0" Click="copyToClipB_Click"></Button>
             </WrapPanel>
 
             <WrapPanel Width="283" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
@@ -59,14 +94,14 @@
                 <CheckBox x:Name="checkNumbers" Content="numbers" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="61" Height="15" IsChecked="False" Margin="0,0,10,0" />
                 <CheckBox x:Name="checkSymbols" Content="symbols" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="57" Height="15" />
             </WrapPanel>
-            
-            <WrapPanel Height="20" Width="140" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
-                <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
-                <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+            <WrapPanel Height="20" Width="145" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
+                <Slider x:Name="CharCount" IsSnapToTickEnabled="True"  TickFrequency="1" HorizontalAlignment="Left" Maximum="16" Minimum="8" VerticalAlignment="Top" Width="120" Height="20"/>
+                <TextBox Background="Black" BorderBrush="#16c60c" IsReadOnly="True"  Style="{StaticResource CustomTextboxStyle}" VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0" />
             </WrapPanel>
-            
+
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGenerate_Click"/>
+                <Button x:Name="btnGenerate" Style="{StaticResource CustomButtonStyle}" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="generate" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGenerate_Click" Width="59" Height="22" FontFamily="Arial" FontWeight="Bold" FontSize="11"/>
             </WrapPanel>
         </StackPanel>
     </Grid>

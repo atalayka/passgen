@@ -126,7 +126,7 @@ public partial class MainWindow : Window
             {
                 txtResult.Text = "Don't waste my time.";
             }
-        }   
+        }
 
         else
         {
@@ -175,7 +175,16 @@ public partial class MainWindow : Window
 
     private void copyToClipB_Click(object sender, RoutedEventArgs e)
     {
-        Clipboard.SetText(txtResult.Text);
+        try
+        {
+            Clipboard.SetText(txtResult.Text);
+        }
+
+        catch (Exception)
+        {
+            throw;
+        }
+
     }
 }
 
