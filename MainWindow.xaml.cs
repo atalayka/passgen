@@ -159,5 +159,10 @@ public partial class MainWindow : Window
             crudePassword.Clear();
         }
     }
+
+    private void copyToClipB_Click(object sender, RoutedEventArgs e)
+    {
+        Clipboard.SetText(txtResult.Text);
+    }
 }
 

@@ -6,22 +6,56 @@
         xmlns:local="clr-namespace:passgen"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="550" Background="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+
+    <Window.Resources>
+        <!-- Define a style for the CheckBox -->
+        <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <!-- Define the checkmark with the desired color -->
+                                <Grid Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Rectangle x:Name="Border" Fill="Black" Stroke="#16c60c"/>
+                                    <Path HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="CheckMark" Stroke="#16c60c" StrokeThickness="1.5"
+                                          Data="M 1 5 L 4 8 L 9 1" SnapsToDevicePixels="True"/>
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Hidden"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Define a style for the CheckBox -->
+
+    </Window.Resources>
+
     <Grid Width="550" Height="400">
 
-        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="252,234,0,0" VerticalAlignment="Top" Click="btnGenerate_Click"/>
-        <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" Margin="176,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
-        <CheckBox x:Name="checkLowerCase" Foreground="#16c60c" Content="lowercase" Margin="131,176,0,0" IsChecked="True" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
-        <CheckBox x:Name="checkNumbers" Foreground="#16c60c" Content="numbers" Margin="289,174,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <CheckBox x:Name="checkSymbols" Foreground="#16c60c" Content="symbols" Margin="362,174,0,0" Width="75" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkUpperCase" Foreground="#16c60c" Content="uppercase" Margin="211,174,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <CheckBox x:Name="checkNumbers" Content="numbers" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="61" Height="15" Margin="350,182,133,202" IsChecked="False" />
+        <CheckBox x:Name="checkLowerCase" Content="lowercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="67" Height="15" Margin="126,180,356,206" IsChecked="True" />
+        <CheckBox x:Name="checkSymbols" Content="symbols" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="57" Height="15" Margin="280,181,202,204" />
+        <CheckBox x:Name="checkUpperCase" Content="uppercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="73" Height="15" Margin="198,180,284,206" />
 
-        <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" Margin="332,206,198,174" />
-        <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Margin="210,208,0,0" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
-        <Button x:Name="copyToClipB" HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="360,132,0,0" VerticalAlignment="Top" Width="30" Height="30">
+        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="253,268,0,0" VerticalAlignment="Top" Click="btnGenerate_Click"/>
+        <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" Margin="176,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
+
+        <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" Margin="333,240,197,140" />
+        <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Margin="211,242,0,0" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
+        <Button x:Name="copyToClipB" HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="360,132,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="copyToClipB_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/clipboard.png"/>
             </Button.Background>
         </Button>
-
     </Grid>
 </Window>
