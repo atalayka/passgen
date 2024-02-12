@@ -63,15 +63,144 @@
             </Setter>
         </Style>
         <!-- Define a style for the Button -->
-        <!-- Define a style for the Slider -->
-        
-        <!-- Define a style for the Slider -->
+
         <!-- Define a style for the Textbox -->
         <Style x:Key="CustomTextboxStyle" TargetType="TextBox">
             <Setter Property="BorderBrush" Value="#16c60c"/>
             <Setter Property="Cursor" Value="None"/>
         </Style>
         <!-- Define a style for the Textbox -->
+
+        <!-- Define a style for the Slider -->
+        <Style x:Key="SliderAccentButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent">
+                            <Border Height="2" CornerRadius="0, 0, 0, 0" Background="{TemplateBinding Foreground}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent">
+                            <Border Height="4" CornerRadius="0, 2.5, 2.5, 0" Background="{TemplateBinding Foreground}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderThumbStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="20" />
+            <Setter Property="BorderThickness" Value="1.5" />
+            <Setter Property="BorderBrush" Value="#16c60c"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid>
+                            <Border Name="AccentThumb"
+                                Background="White"
+                                BorderBrush="#16c60c"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Width="20"
+                                Height="20"
+                                CornerRadius="40" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="AccentThumb" Property="BorderBrush" Value="red"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseCaptured" Value="True">
+                                <Setter TargetName="AccentThumb" Property="BorderBrush" Value="#16c60c"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BaseVolumeSliderStyle" TargetType="{x:Type Slider}">
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Minimum" Value="8" />
+            <Setter Property="Maximum" Value="16" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Interval" Value="1" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="SmallChange" Value="1" />
+            <Setter Property="LargeChange" Value="1" />
+            <Setter Property="IsManipulationEnabled" Value="true" />
+        </Style>
+
+        <Style x:Key="{x:Type Slider}"
+           BasedOn="{StaticResource BaseVolumeSliderStyle}"
+           TargetType="{x:Type Slider}">
+            <Setter Property="Template" Value="{DynamicResource VolumeSliderTemplate}" />
+        </Style>
+
+        <ControlTemplate x:Key="VolumeSliderTemplate" TargetType="{x:Type Slider}">
+            <Grid>
+                <Border Name="TrackBackground" Height="2" />
+
+                <Track Name="PART_Track">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Name="SliderLeft"
+                                  Command="Slider.DecreaseLarge"
+                                  Foreground="#16c60c"
+                                  Style="{StaticResource SliderAccentButtonStyle}" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Name="SliderThumb">
+                            <Thumb.Style>
+                                <Style BasedOn="{StaticResource SliderThumbStyle}" TargetType="{x:Type Thumb}">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="BorderBrush" Value="#16c60c" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource TemplatedParent}}" Value="true">
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="BorderBrush" Value="#16c60c" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsMouseCaptureWithin, RelativeSource={RelativeSource TemplatedParent}}" Value="true">
+                                            <Setter Property="BorderThickness" Value="10" />
+                                            <Setter Property="BorderBrush" Value="#16c60c" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Thumb.Style>
+                        </Thumb>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Name="SliderRight"
+                                  Command="Slider.IncreaseLarge"
+                                  Foreground="White"
+                                  Style="{StaticResource SliderButtonStyle}" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <!-- Define a style for the Slider -->
     </Window.Resources>
 
     <Grid Width="550" Height="400">
@@ -96,7 +225,12 @@
             </WrapPanel>
 
             <WrapPanel Height="20" Width="145" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
-                <Slider x:Name="CharCount" IsSnapToTickEnabled="True"  TickFrequency="1" HorizontalAlignment="Left" Maximum="16" Minimum="8" VerticalAlignment="Top" Width="120" Height="20"/>
+                <Slider x:Name="CharCount" IsSnapToTickEnabled="True"  TickFrequency="1" HorizontalAlignment="Left" Maximum="16" Minimum="8" VerticalAlignment="Top" Width="120" Height="20">
+                    <Slider.Resources>
+                        <Style TargetType="Thumb" BasedOn="{StaticResource SliderThumbStyle}" />
+                        <Style TargetType="RepeatButton" BasedOn="{StaticResource SliderButtonStyle}" />
+                    </Slider.Resources>
+                </Slider>
                 <TextBox Background="Black" BorderBrush="#16c60c" IsReadOnly="True"  Style="{StaticResource CustomTextboxStyle}" VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0" />
             </WrapPanel>
 
