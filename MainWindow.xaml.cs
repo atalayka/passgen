@@ -108,19 +108,25 @@ public partial class MainWindow : Window
                 GenerateSymbols generateSymbols = new GenerateSymbols();
                 generateSymbols.GeneratePassword();
             }
-
-            Random random = new Random((int)DateTime.Now.Ticks + 567);
-            for (int i = 0; i < passwordLength; i++)
+            try
             {
-                int randomIndex = random.Next(crudePassword.Count - 1);
-                password.Add(crudePassword[randomIndex]);
-                crudePassword.Remove(crudePassword[randomIndex]);
+                Random random = new Random((int)DateTime.Now.Ticks + 567);
+                for (int i = 0; i < passwordLength; i++)
+                {
+                    int randomIndex = random.Next(crudePassword.Count - 1);
+                    password.Add(crudePassword[randomIndex]);
+                    crudePassword.Remove(crudePassword[randomIndex]);
+                }
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+                crudePassword.Clear();
             }
-            txtResult.Text = string.Join("", password.ToArray());
-            counter++;
-            password.Clear();
-            crudePassword.Clear();
-        }
+            catch
+            {
+                txtResult.Text = "Don't waste my time.";
+            }
+        }   
 
         else
         {
@@ -146,17 +152,24 @@ public partial class MainWindow : Window
                 generateSymbols.GeneratePassword();
             }
 
-            Random random = new Random((int)DateTime.Now.Ticks + 678);
-            for (int i = 0; i < passwordLength; i++)
+            try
             {
-                int randomIndex = random.Next(crudePassword.Count - 1);
-                password.Add(crudePassword[randomIndex]);
-                crudePassword.Remove(crudePassword[randomIndex]);
+                Random random = new Random((int)DateTime.Now.Ticks + 678);
+                for (int i = 0; i < passwordLength; i++)
+                {
+                    int randomIndex = random.Next(crudePassword.Count - 1);
+                    password.Add(crudePassword[randomIndex]);
+                    crudePassword.Remove(crudePassword[randomIndex]);
+                }
+                txtResult.Text = string.Join("", password.ToArray());
+                counter++;
+                password.Clear();
+                crudePassword.Clear();
             }
-            txtResult.Text = string.Join("", password.ToArray());
-            counter++;
-            password.Clear();
-            crudePassword.Clear();
+            catch
+            {
+                txtResult.Text = "Don't waste my time.";
+            }
         }
     }
 

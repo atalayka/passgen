@@ -41,21 +41,33 @@
     </Window.Resources>
 
     <Grid Width="550" Height="400">
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Margin="0,0,0,5">
+                <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Center" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
+                <Button x:Name="copyToClipB" HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="5,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="copyToClipB_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/clipboard.png"/>
+                    </Button.Background>
+                </Button>
+            </WrapPanel>
 
-        <CheckBox x:Name="checkNumbers" Content="numbers" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="61" Height="15" Margin="350,182,133,202" IsChecked="False" />
-        <CheckBox x:Name="checkLowerCase" Content="lowercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="67" Height="15" Margin="126,180,356,206" IsChecked="True" />
-        <CheckBox x:Name="checkSymbols" Content="symbols" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="57" Height="15" Margin="280,181,202,204" />
-        <CheckBox x:Name="checkUpperCase" Content="uppercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="73" Height="15" Margin="198,180,284,206" />
-
-        <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Left" Margin="253,268,0,0" VerticalAlignment="Top" Click="btnGenerate_Click"/>
-        <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Left" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" Margin="176,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
-
-        <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" Margin="333,240,197,140" />
-        <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Margin="211,242,0,0" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
-        <Button x:Name="copyToClipB" HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="360,132,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="copyToClipB_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="/clipboard.png"/>
-            </Button.Background>
-        </Button>
+            <WrapPanel Width="283" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
+                <CheckBox x:Name="checkLowerCase" Content="lowercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="67" Height="15" IsChecked="True" Margin="0,0,10,0" />
+                <CheckBox x:Name="checkUpperCase" Content="uppercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="68" Height="15" Margin="0,0,10,0" />
+                <CheckBox x:Name="checkNumbers" Content="numbers" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="61" Height="15" IsChecked="False" Margin="0,0,10,0" />
+                <CheckBox x:Name="checkSymbols" Content="symbols" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="57" Height="15" />
+            </WrapPanel>
+            
+            <WrapPanel Height="20" Width="140" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
+                <Slider x:Name="CharCount" IsSnapToTickEnabled="True" BorderBrush="#16c60c"  TickFrequency="1" HorizontalAlignment="Left" Maximum="16" Minimum="8" Foreground="#16c60c" Background="Black" VerticalAlignment="Top" Width="120" Height="20"/>
+                <TextBox Background="Black" BorderBrush="#16c60c"  VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Foreground="#16c60c" Text="{Binding ElementName=CharCount, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </WrapPanel>
+            
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="btnGenerate" Background="Transparent" BorderBrush="#16c60c" Foreground="#16c60c" Content="Generate" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGenerate_Click"/>
+            </WrapPanel>
+        </StackPanel>
     </Grid>
 </Window>
