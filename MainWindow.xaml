@@ -16,7 +16,7 @@
                         <BulletDecorator Background="Transparent">
                             <BulletDecorator.Bullet>
                                 <!-- Define the checkmark with the desired color -->
-                                <Grid Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid Width="14" Height="13" VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <Rectangle x:Name="Border" Fill="Black" Stroke="#16c60c"/>
                                     <Path HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="CheckMark" Stroke="#16c60c" StrokeThickness="1.5"
                                           Data="M 1 5 L 4 8 L 9 1" SnapsToDevicePixels="True"/>
@@ -217,11 +217,11 @@
                 <Button x:Name="copyToClipB" Style="{StaticResource CustomButtonStyle}" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-31,0,0,0" Click="copyToClipB_Click"></Button>
             </WrapPanel>
 
-            <WrapPanel Width="283" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
-                <CheckBox x:Name="checkLowerCase" Content="lowercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="67" Height="15" IsChecked="True" Margin="0,0,10,0" />
-                <CheckBox x:Name="checkUpperCase" Content="uppercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="68" Height="15" Margin="0,0,10,0" />
-                <CheckBox x:Name="checkNumbers" Content="numbers" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="61" Height="15" IsChecked="False" Margin="0,0,10,0" />
-                <CheckBox x:Name="checkSymbols" Content="symbols" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="57" Height="15" />
+            <WrapPanel Width="290" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
+                <CheckBox x:Name="checkLowerCase" Content="lowercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="68" Height="15" IsChecked="True" Margin="0,0,10,0" />
+                <CheckBox x:Name="checkUpperCase" Content="uppercase" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="71" Height="15" Margin="0,0,10,0" />
+                <CheckBox x:Name="checkNumbers" Content="numbers" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="62" Height="15" IsChecked="False" Margin="0,0,10,0" />
+                <CheckBox x:Name="checkSymbols" Content="symbols" Foreground="#16c60c"  Style="{StaticResource CustomCheckBoxStyle}" Width="59" Height="15" />
             </WrapPanel>
 
             <WrapPanel Height="20" Width="145" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">

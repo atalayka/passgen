@@ -182,7 +182,6 @@ public partial class MainWindow : Window
 
         catch (Exception)
         {
-            throw;
         }
 
     }
