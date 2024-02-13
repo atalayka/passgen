@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace passgen;
 public partial class MainWindow : Window
@@ -184,7 +186,7 @@ public partial class MainWindow : Window
         {
             rectTickClipB.Visibility = Visibility.Visible;
             Clipboard.SetText(txtResult.Text);
-            await Task.Delay(1050); 
+            await Task.Delay(1050);
         }
         catch (Exception)
         {
@@ -193,6 +195,28 @@ public partial class MainWindow : Window
         {
             rectTickClipB.Visibility = Visibility.Hidden;
         }
+    }
+
+    private void Window_MouseMove(object sender, MouseEventArgs e)
+    {
+        Point currentPosition = e.GetPosition(this);
+
+        double mouseX = currentPosition.X - 260;
+        double mouseY = currentPosition.Y - 190;
+
+        Canvas.SetLeft(SiluetCanvas.Children[0], mouseX);
+        Canvas.SetTop(SiluetCanvas.Children[0], mouseY);
+    }
+
+    private void Window_MouseEnter(object sender, MouseEventArgs e)
+    {
+        SiluetCanvas.Visibility = Visibility.Visible;
+    }
+
+    private void Window_MouseLeave(object sender, MouseEventArgs e)
+    {
+        SiluetCanvas.Visibility = Visibility.Hidden;
+
     }
 }
 
