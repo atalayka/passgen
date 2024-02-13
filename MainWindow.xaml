@@ -205,7 +205,7 @@
 
     <Grid Width="450" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="">
 
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Margin="0,0,0,5">
                 <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Center" Style="{StaticResource CustomTextboxStyle}" IsReadOnly="True" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}" Margin="20,0,0,0"/>
@@ -215,7 +215,7 @@
                     </Button.Background>
                 </Button>
                 <Button x:Name="copyToClipB" Style="{StaticResource CustomButtonStyle}" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-31,0,0,0" Click="copyToClipB_Click"></Button>
-                <Rectangle Width="20" Height="20" Stroke="transparent" StrokeThickness="0" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Rectangle x:Name="rectTickClipB" Width="20" Height="20" Stroke="transparent" StrokeThickness="0" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="/Images/tick.png" Stretch="UniformToFill"/>
                     </Rectangle.Fill>

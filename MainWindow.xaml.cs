@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace passgen;
 public partial class MainWindow : Window
@@ -82,6 +84,7 @@ public partial class MainWindow : Window
     }
 
     int counter = 0;
+
     private void btnGenerate_Click(object sender, RoutedEventArgs e)
     {
         passwordLength = (int)CharCount.Value;
@@ -173,18 +176,21 @@ public partial class MainWindow : Window
         }
 
     }
-
-    private void copyToClipB_Click(object sender, RoutedEventArgs e)
+    private async void copyToClipB_Click(object sender, RoutedEventArgs e)
     {
         try
         {
+            rectTickClipB.Visibility = Visibility.Visible;
             Clipboard.SetText(txtResult.Text);
+            await Task.Delay(1000); 
         }
-
         catch (Exception)
         {
         }
-
+        finally
+        {
+            rectTickClipB.Visibility = Visibility.Hidden;
+        }
     }
 }
 
