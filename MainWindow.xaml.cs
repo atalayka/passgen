@@ -187,7 +187,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            SaveTOFile saveTOFile = new(txtResult);
+            SaveTOFile saveTOFile = new(txtResult, "atalay", "google"); //BURAYI DÜZENLE!!!
             saveTOFile.Save();
 
             rectTickClipB.Visibility = Visibility.Visible;
@@ -233,14 +233,18 @@ public partial class MainWindow : Window
     public class SaveTOFile : IRecord
     {
         public TextBox TxtResult { get; set; }
-        public string platform = "Google";
-        public string account = "atalay";
+        public string platform { get; set; }
+        public string account { get; set; }
+
         string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
 
-        public SaveTOFile(TextBox txtResult)
+        public SaveTOFile(TextBox txtResult, string platform, string account)
         {
             TxtResult = txtResult;
+            this.platform = platform;
+            this.account = account;
         }
+
         public void Save()
         {
             string text = TxtResult.Text + " - " + formattedDate + " / " + platform + " : " + account;
