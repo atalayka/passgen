@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
+using System.IO;
+using System.Security.Principal;
 
 namespace passgen;
 public partial class MainWindow : Window
@@ -83,6 +85,7 @@ public partial class MainWindow : Window
             }
         }
     }
+
 
     int counter = 0;
 
@@ -184,6 +187,9 @@ public partial class MainWindow : Window
     {
         try
         {
+            SaveTOFile saveTOFile = new(txtResult);
+            saveTOFile.Save();
+
             rectTickClipB.Visibility = Visibility.Visible;
             Clipboard.SetText(txtResult.Text);
             await Task.Delay(1050);
@@ -217,6 +223,42 @@ public partial class MainWindow : Window
     {
         SiluetCanvas.Visibility = Visibility.Hidden;
 
+    }
+
+    public interface IRecord
+    {
+        public void Save();
+    }
+
+    public class SaveTOFile : IRecord
+    {
+        public TextBox TxtResult { get; set; }
+        public string platform = "Google";
+        public string account = "atalay";
+        string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
+
+        public SaveTOFile(TextBox txtResult)
+        {
+            TxtResult = txtResult;
+        }
+        public void Save()
+        {
+            string text = TxtResult.Text + " - " + formattedDate + " / " + platform + " : " + account;
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.txt";
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath);
+            }
+            using (StreamWriter sw = new StreamWriter(filePath, true))
+            {
+                sw.WriteLine(text);
+            }
+        }
+    }
+
+    private void btnClose_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
     }
 }
 

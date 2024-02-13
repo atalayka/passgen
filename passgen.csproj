@@ -101,10 +101,10 @@
     <Resource Include="Images\clipboard.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="clipboard.png" />
+    <Resource Include="Images\tick.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\tick.png" />
+    <Resource Include="Images\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

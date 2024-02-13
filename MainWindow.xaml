@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:passgen"
         mc:Ignorable="d"
-        Title="MainWindow" Width="450" Height="300" Background="Black" WindowStyle="None" ResizeMode="NoResize" BorderBrush="#16c60c" BorderThickness="1"  WindowStartupLocation="CenterScreen" MouseMove="Window_MouseMove" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" >
+        Title="MainWindow" Width="450" Height="300" Background="Black" WindowStyle="None" ResizeMode="NoResize" BorderBrush="#16c60c" BorderThickness="1.5"  WindowStartupLocation="CenterScreen" MouseMove="Window_MouseMove" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" >
 
     <Window.Resources>
         <!-- Define a style for the CheckBox -->
@@ -50,7 +50,8 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Padding="{TemplateBinding Padding}">
+                                CornerRadius="5"
+                            Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -202,27 +203,34 @@
         </ControlTemplate>
         <!-- Define a style for the Slider -->
 
-        <!-- Define a style for the silhouette -->
-        <!-- Define a style for the silhouette -->
     </Window.Resources>
 
-    <Grid Width="450" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center"  >
-
-        <Canvas x:Name="SiluetCanvas" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Center" Panel.ZIndex="-1" Opacity="0.8">
+    <Grid Width="450" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Canvas x:Name="SiluetCanvas" HorizontalAlignment="Center" Visibility="Hidden" VerticalAlignment="Center" Panel.ZIndex="-1" Opacity="0.8">
             <Canvas.Background>
                 <ImageBrush/>
             </Canvas.Background>
             <Canvas.Effect>
-                <BlurEffect Radius="100"/>
+                <BlurEffect Radius="100" KernelType="Gaussian"/>
             </Canvas.Effect>
             <Ellipse Fill="White" Width="60" Height="60" />
         </Canvas>
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="30" Margin="0,2.5,2.5,0">
+            <Button x:Name="btnClose" BorderBrush="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30" Click="btnClose_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/close.png" Stretch="UniformToFill" TileMode="Tile"/>
+                </Button.Background>
+                <Button.Effect>
+                    <BlurEffect Radius="2" KernelType="Gaussian" RenderingBias="Quality"/>
+                </Button.Effect>
+            </Button>
+        </WrapPanel>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Margin="0,0,0,5">
                 <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Center" Style="{StaticResource CustomTextboxStyle}" IsReadOnly="True" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}" Margin="20,0,0,0"/>
-                <Button x:Name="Rectangle"  HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="5,2.5,0,0" VerticalAlignment="Top" Width="30" Height="30">
+                <Button x:Name="btnClipBoard"  HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="5,2.5,0,0" VerticalAlignment="Top" Width="30" Height="30">
                     <Button.Background>
                         <ImageBrush ImageSource="/clipboard.png"/>
                     </Button.Background>
