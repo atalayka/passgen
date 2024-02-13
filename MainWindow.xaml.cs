@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace passgen;
@@ -85,7 +84,7 @@ public partial class MainWindow : Window
 
     int counter = 0;
 
-    private void btnGenerate_Click(object sender, RoutedEventArgs e)
+    private async void btnGenerate_Click(object sender, RoutedEventArgs e)
     {
         passwordLength = (int)CharCount.Value;
         if (counter % 2 == 0)
@@ -174,6 +173,9 @@ public partial class MainWindow : Window
                 txtResult.Text = "Don't waste my time.";
             }
         }
+        btnGenerate.Visibility = Visibility.Hidden;
+        await Task.Delay(400);
+        btnGenerate.Visibility = Visibility.Visible;
 
     }
     private async void copyToClipB_Click(object sender, RoutedEventArgs e)
@@ -182,7 +184,7 @@ public partial class MainWindow : Window
         {
             rectTickClipB.Visibility = Visibility.Visible;
             Clipboard.SetText(txtResult.Text);
-            await Task.Delay(1000); 
+            await Task.Delay(1050); 
         }
         catch (Exception)
         {
