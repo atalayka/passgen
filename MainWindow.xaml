@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:passgen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="550" Background="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+        Title="MainWindow" Width="450" Height="300" Background="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
 
     <Window.Resources>
         <!-- Define a style for the CheckBox -->
@@ -203,18 +203,23 @@
         <!-- Define a style for the Slider -->
     </Window.Resources>
 
-    <Grid Width="550" Height="400">
+    <Grid Width="450" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Margin="0,0,0,5">
-                <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Center" Style="{StaticResource CustomTextboxStyle}" IsReadOnly="True" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}"/>
+                <TextBox x:Name="txtResult" Foreground="#16c60c" HorizontalAlignment="Center" Style="{StaticResource CustomTextboxStyle}" IsReadOnly="True" BorderBrush="#16c60c" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="175" FontSize="16" FontFamily="Bahnschrift" Height="34" Background="{x:Null}" Margin="20,0,0,0"/>
                 <Button x:Name="Rectangle"  HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Margin="5,2.5,0,0" VerticalAlignment="Top" Width="30" Height="30">
                     <Button.Background>
                         <ImageBrush ImageSource="/clipboard.png"/>
                     </Button.Background>
                 </Button>
                 <Button x:Name="copyToClipB" Style="{StaticResource CustomButtonStyle}" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-31,0,0,0" Click="copyToClipB_Click"></Button>
+                <Rectangle Width="20" Height="20" Stroke="transparent" StrokeThickness="0" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Images/tick.png" Stretch="UniformToFill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
             </WrapPanel>
 
             <WrapPanel Width="290" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">

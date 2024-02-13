@@ -171,6 +171,7 @@ public partial class MainWindow : Window
                 txtResult.Text = "Don't waste my time.";
             }
         }
+
     }
 
     private void copyToClipB_Click(object sender, RoutedEventArgs e)

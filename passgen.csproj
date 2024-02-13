@@ -103,5 +103,8 @@
   <ItemGroup>
     <Resource Include="clipboard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tick.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
