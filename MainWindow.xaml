@@ -268,14 +268,14 @@
                 <Button x:Name="btnGenerate" Style="{StaticResource CustomButtonStyle}" Padding="0,0,0,5"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" BorderBrush="#16c60c" Foreground="#16c60c" Content="generate" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGenerate_Click" Width="70" Height="28" FontSize="15" FontStretch="Medium" FontWeight="Medium"/>
             </WrapPanel>
         </StackPanel>
-        
+
         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="99" Height="30" Margin="2.75,0,0,2.75">
             <Button x:Name="btnToMail" Style="{StaticResource ResourceKey=CustomButtonStyle}" Width="30" Height="30" Click="btnToMail_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/toMail.png" Stretch="UniformToFill" TileMode="None"/>
                 </Button.Background>
             </Button>
-            
+
             <Button x:Name="btnToDesktop" Style="{StaticResource ResourceKey=CustomButtonStyle}" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2.75,0,0,0" Click="btnToDesktop_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/toDesktop.png" Stretch="UniformToFill" TileMode="None"/>
@@ -287,7 +287,6 @@
                     <ImageBrush ImageSource="Images/toSms.png" Stretch="Uniform" TileMode="None"/>
                 </Button.Background>
             </Button>
-
         </WrapPanel>
     </Grid>
 </Window>
