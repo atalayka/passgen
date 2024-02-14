@@ -187,8 +187,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            SaveTOFile saveTOFile = new(txtResult, "atalay", "google"); //BURAYI DÜZENLE!!!
-            saveTOFile.Save();
+          
 
             rectTickClipB.Visibility = Visibility.Visible;
             Clipboard.SetText(txtResult.Text);
@@ -230,7 +229,7 @@ public partial class MainWindow : Window
         public void Save();
     }
 
-    public class SaveTOFile : IRecord
+    public class SaveTODesktopFile : IRecord
     {
         public TextBox TxtResult { get; set; }
         public string platform { get; set; }
@@ -238,7 +237,7 @@ public partial class MainWindow : Window
 
         string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
 
-        public SaveTOFile(TextBox txtResult, string platform, string account)
+        public SaveTODesktopFile(TextBox txtResult, string platform, string account)
         {
             TxtResult = txtResult;
             this.platform = platform;
@@ -263,6 +262,12 @@ public partial class MainWindow : Window
     private void btnClose_Click(object sender, RoutedEventArgs e)
     {
         this.Close();
+    }
+
+    private void btnToDesktop_Click(object sender, RoutedEventArgs e)
+    {
+        SaveTODesktopFile saveTOdeskFile = new(txtResult, "atalay", "google"); //BURAYI DÜZENLE!!!
+        saveTOdeskFile.Save();
     }
 }
 

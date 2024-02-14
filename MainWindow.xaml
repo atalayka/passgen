@@ -215,7 +215,7 @@
             </Canvas.Effect>
             <Ellipse Fill="White" Width="60" Height="60" />
         </Canvas>
-        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="30" Margin="0,2.5,2.5,0">
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="30" Margin="0,2.75,2.75,0">
             <Button x:Name="btnClose" BorderBrush="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30" Click="btnClose_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/close.png" Stretch="UniformToFill" TileMode="Tile"/>
@@ -235,7 +235,11 @@
                         <ImageBrush ImageSource="Images/clipboard.png"/>
                     </Button.Background>
                 </Button>
-                <Button x:Name="copyToClipB" Style="{StaticResource CustomButtonStyle}" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-31,0,0,0" Click="copyToClipB_Click"></Button>
+                <Button x:Name="copyToClipB" Style="{StaticResource CustomButtonStyle}" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-31,0,0,0" Click="copyToClipB_Click">
+                    <Button.Background>
+                        <ImageBrush Stretch="UniformToFill"/>
+                    </Button.Background>
+                </Button>
                 <Rectangle x:Name="rectTickClipB" Width="20" Height="20" Stroke="transparent" StrokeThickness="0" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="/Images/tick.png" Stretch="UniformToFill"/>
@@ -264,5 +268,26 @@
                 <Button x:Name="btnGenerate" Style="{StaticResource CustomButtonStyle}" Padding="0,0,0,5"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" BorderBrush="#16c60c" Foreground="#16c60c" Content="generate" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGenerate_Click" Width="70" Height="28" FontSize="15" FontStretch="Medium" FontWeight="Medium"/>
             </WrapPanel>
         </StackPanel>
+        
+        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="99" Height="30" Margin="2.75,0,0,2.75">
+            <Button x:Name="btnToMail" Style="{StaticResource ResourceKey=CustomButtonStyle}" Width="30" Height="30">
+                <Button.Background>
+                    <ImageBrush ImageSource="/toMail.png" Stretch="UniformToFill" TileMode="None"/>
+                </Button.Background>
+            </Button>
+            
+            <Button x:Name="btnToDesktop" Style="{StaticResource ResourceKey=CustomButtonStyle}" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2.75,0,0,0" Click="btnToDesktop_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/toDesktop.png" Stretch="UniformToFill" TileMode="None"/>
+                </Button.Background>
+            </Button>
+
+            <Button x:Name="btnToSms" Style="{StaticResource ResourceKey=CustomButtonStyle}" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2.75,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/toSms.png" Stretch="Uniform" TileMode="None"/>
+                </Button.Background>
+            </Button>
+
+        </WrapPanel>
     </Grid>
 </Window>

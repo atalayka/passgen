@@ -106,5 +106,17 @@
   <ItemGroup>
     <Resource Include="Images\close.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="toMail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\toMail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\toDesktop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\toSms.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
