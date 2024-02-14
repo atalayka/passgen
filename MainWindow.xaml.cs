@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.IO;
 using System.Security.Principal;
+using passgen.windows;
 
 namespace passgen;
 public partial class MainWindow : Window
@@ -266,8 +267,12 @@ public partial class MainWindow : Window
 
     private void btnToDesktop_Click(object sender, RoutedEventArgs e)
     {
-        SaveTODesktopFile saveTOdeskFile = new(txtResult, "atalay", "google"); //BURAYI DÜZENLE!!!
-        saveTOdeskFile.Save();
+        SVToDesktop toDesktop = new SVToDesktop();
+        toDesktop.Show();
+
+
+        //SaveTODesktopFile saveTOdeskFile = new(txtResult, "atalay", "google"); //BURAYI DÜZENLE!!!
+        //saveTOdeskFile.Save();
     }
 }
 

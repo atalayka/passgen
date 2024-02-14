@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="windows\SVToDesktop.xaml.cs">
+      <DependentUpon>SVToDesktop.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +73,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windows\SVToDesktop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -107,9 +114,6 @@
     <Resource Include="Images\close.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="toMail.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\toMail.png" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +121,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\toSms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\clipboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\toDesktop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\toMail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\toSms.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
