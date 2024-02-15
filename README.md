@@ -1,5 +1,5 @@
 # passgen
 
 
-https://github.com/atalayka/passgen/assets/58311022/bcc1f87c-bc9f-4eee-996c-11c591a24fd7
+https://github.com/atalayka/passgen/assets/58311022/0495b52b-6776-498d-b180-27e8b62fee32
 
