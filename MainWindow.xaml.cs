@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.IO;
-using System.Security.Principal;
 using passgen.windows;
 
 namespace passgen;
@@ -25,6 +24,13 @@ public partial class MainWindow : Window
     public interface IGenerate
     {
         public void GeneratePassword();
+    }
+
+
+    public string ResultText
+    {
+        get { return txtResult.Text; }
+        set { txtResult.Text = value; }
     }
 
     public class GenerateLowerCase : IGenerate
@@ -224,37 +230,8 @@ public partial class MainWindow : Window
 
     public interface IRecord
     {
+        //save to diff platforms.
         public void Save();
-    }
-
-    public class SaveTODesktopFile : IRecord
-    {
-        public TextBox TxtResult { get; set; }
-        public string platform { get; set; }
-        public string account { get; set; }
-
-        string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
-
-        public SaveTODesktopFile(TextBox txtResult, string platform, string account)
-        {
-            TxtResult = txtResult;
-            this.platform = platform;
-            this.account = account;
-        }
-
-        public void Save()
-        {
-            string text = TxtResult.Text + " - " + formattedDate + " / " + platform + " : " + account;
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.txt";
-            if (!File.Exists(filePath))
-            {
-                File.Create(filePath);
-            }
-            using (StreamWriter sw = new StreamWriter(filePath, true))
-            {
-                sw.WriteLine(text);
-            }
-        }
     }
 
     private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -267,8 +244,6 @@ public partial class MainWindow : Window
         SVToDesktop toDesktop = new SVToDesktop();
         toDesktop.Show();
 
-        //SaveTODesktopFile saveTOdeskFile = new(txtResult, "atalay", "google"); //BURAYI DÜZENLE!!!
-        //saveTOdeskFile.Save();
     }
 
     private void btnToMail_Click(object sender, RoutedEventArgs e)

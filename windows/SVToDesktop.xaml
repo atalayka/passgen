@@ -226,6 +226,7 @@
         <!-- Define a style for the Slider -->
 
     </Window.Resources>
+    
     <Grid Width="450" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Canvas x:Name="SiluetCanvas" HorizontalAlignment="Center" Visibility="Hidden" VerticalAlignment="Center" Panel.ZIndex="-1" Opacity="0.8">
             <Canvas.Background>
@@ -248,12 +249,15 @@
         </WrapPanel>
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Grid>
-                <TextBlock x:Name="dynamicTextBlock" Text="gimme a account name" Foreground="#16c60c" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
-            </Grid>
-
             <Label x:Name="lblAccountName" Content="account name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
-            <TextBox x:Name="txtAccountName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="15" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtAccountName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="15" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10"/>
+            
+            <Label x:Name="lblPlatformName" Content="platform name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
+            <TextBox x:Name="txtPlatformName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="15" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20"/>
+ 
+            <Button x:Name="btnSubmit" BorderBrush="#16c60c" Foreground="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="50" Height="25" Content="submit" Click="btnSubmit_Click" />
         </StackPanel>
+        
+           
     </Grid>
 </Window>
