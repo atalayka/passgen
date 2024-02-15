@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -22,6 +23,7 @@ namespace passgen.windows
         public SVToDesktop()
         {
             InitializeComponent();
+            StartTextAnimation();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -48,6 +50,19 @@ namespace passgen.windows
         private void Window_MouseLeave(object sender, MouseEventArgs e)
         {
             SiluetCanvas.Visibility = Visibility.Hidden;
+        }
+        private async void StartTextAnimation()
+        {
+            while (true)
+            {
+                for (int i = 0; i <= dynamicTextBlock.Text.Length; i++)
+                {
+                    dynamicTextBlock.Text = "gimme a account name".Substring(0, i);
+                    await Task.Delay(200); // Değişiklik hızını ayarlayabilirsiniz
+                }
+                await Task.Delay(1000); // Metin sonuna ulaşıldıktan sonra bekleme süresi
+            }
+
         }
     }
 }

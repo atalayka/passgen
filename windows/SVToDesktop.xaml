@@ -68,8 +68,30 @@
         <!-- Define a style for the Textbox -->
         <Style x:Key="CustomTextboxStyle" TargetType="TextBox">
             <Setter Property="BorderBrush" Value="#16c60c"/>
-            <Setter Property="Cursor" Value="None"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#16c60c"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border x:Name="border" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5">
+                                <ScrollViewer x:Name="PART_ContentHost"/>
+                            </Border>
+                            <TextBlock x:Name="placeholderText" Text="{TemplateBinding Tag}" Foreground="#16c60c" VerticalAlignment="Center" Margin="5,0,0,0" Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Red"/>
+                            </Trigger>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+
         <!-- Define a style for the Textbox -->
 
         <!-- Define a style for the Slider -->
@@ -224,5 +246,14 @@
                 </Button.Effect>
             </Button>
         </WrapPanel>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <TextBlock x:Name="dynamicTextBlock" Text="gimme a account name" Foreground="#16c60c" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+            </Grid>
+
+            <Label x:Name="lblAccountName" Content="account name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
+            <TextBox x:Name="txtAccountName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="15" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </Window>

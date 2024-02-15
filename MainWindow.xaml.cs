@@ -188,8 +188,6 @@ public partial class MainWindow : Window
     {
         try
         {
-          
-
             rectTickClipB.Visibility = Visibility.Visible;
             Clipboard.SetText(txtResult.Text);
             await Task.Delay(1050);
@@ -222,7 +220,6 @@ public partial class MainWindow : Window
     private void Window_MouseLeave(object sender, MouseEventArgs e)
     {
         SiluetCanvas.Visibility = Visibility.Hidden;
-
     }
 
     public interface IRecord
@@ -269,7 +266,6 @@ public partial class MainWindow : Window
     {
         SVToDesktop toDesktop = new SVToDesktop();
         toDesktop.Show();
-
 
         //SaveTODesktopFile saveTOdeskFile = new(txtResult, "atalay", "google"); //BURAYI DÜZENLE!!!
         //saveTOdeskFile.Save();
