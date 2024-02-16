@@ -10,6 +10,9 @@
     <Window.Resources>
         <!-- Define a style for the CheckBox -->
         <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#16c60c"/>
+            <Setter Property="BorderBrush" Value="#16c60c"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -19,7 +22,7 @@
                                 <Grid Width="14" Height="13" VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <Rectangle x:Name="Border" Fill="Black" Stroke="#16c60c"/>
                                     <Path HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="CheckMark" Stroke="#16c60c" StrokeThickness="1.5"
-                                          Data="M 1 5 L 4 8 L 9 1" SnapsToDevicePixels="True"/>
+                               Data="M 1 5 L 4 8 L 9 1" SnapsToDevicePixels="True"/>
                                 </Grid>
                             </BulletDecorator.Bullet>
                             <ContentPresenter Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -30,6 +33,9 @@
                             </Trigger>
                             <Trigger Property="IsChecked" Value="False">
                                 <Setter TargetName="CheckMark" Property="Visibility" Value="Hidden"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Stroke" Value="Red"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
