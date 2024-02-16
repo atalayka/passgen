@@ -69,7 +69,6 @@ namespace passgen.windows
                 platform = txtPlatformName.Text;
                 account = txtAccountName.Text;
                 result = resultText.Trim(); // resultText parametresini result'e atayın
-
             }
 
             public void Save()
@@ -89,6 +88,8 @@ namespace passgen.windows
         public static string ResultText { get; set; }
         private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+            string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
+
             MainWindow main = (MainWindow)Application.Current.MainWindow;
             ResultText = main.ResultText;
 
@@ -107,9 +108,10 @@ namespace passgen.windows
                     doc.Load(xmlFilePath);
 
                     XmlElement element = doc.CreateElement("password");
+                    element.SetAttribute("password", ResultText);
+                    element.SetAttribute("date", formattedDate);
                     element.SetAttribute("platform", txtPlatformName.Text);
                     element.SetAttribute("account", txtAccountName.Text);
-                    element.SetAttribute("password", ResultText);
                     doc.DocumentElement.AppendChild(element);
 
                     doc.Save(xmlFilePath);
@@ -123,9 +125,10 @@ namespace passgen.windows
 
                     // Verileri XML'e ekleyin
                     XmlElement element = doc.CreateElement("password");
+                    element.SetAttribute("password", ResultText);
+                    element.SetAttribute("date", formattedDate);
                     element.SetAttribute("platform", txtPlatformName.Text);
                     element.SetAttribute("account", txtAccountName.Text);
-                    element.SetAttribute("password", ResultText);
                     rootElement.AppendChild(element);
 
                     doc.Save(xmlFilePath);
@@ -147,7 +150,7 @@ namespace passgen.windows
                     // Yeni veriyi oluştur
                     var newData = new[]
                     {
-            new { platform = txtPlatformName.Text, account = txtAccountName.Text, password = ResultText }
+            new { password = ResultText, date = formattedDate, platform = txtPlatformName.Text, account = txtAccountName.Text  }
         };
 
                     // Verileri birleştir
@@ -165,7 +168,7 @@ namespace passgen.windows
                     // Yeni JSON dosyası oluştur
                     var data = new[]
                     {
-            new { platform = txtPlatformName.Text, account = txtAccountName.Text, password = ResultText }
+            new { password = ResultText, date = formattedDate, platform = txtPlatformName.Text, account = txtAccountName.Text }
         };
 
                     // Formatlama seçenekleri ile Serialize
@@ -194,7 +197,7 @@ namespace passgen.windows
                             sw.WriteLine(line);
                         }
 
-                        sw.WriteLine($"{txtPlatformName.Text},{txtAccountName.Text},{ResultText}");
+                        sw.WriteLine($"{ResultText},{formattedDate},{txtPlatformName.Text},{txtAccountName.Text}");
                     }
                 }
                 else
@@ -202,8 +205,8 @@ namespace passgen.windows
                     // Yeni CSV dosyası oluştur
                     using (StreamWriter sw = new StreamWriter(csvFilePath))
                     {
-                        sw.WriteLine("Platform,Account,Password");
-                        sw.WriteLine($"{txtPlatformName.Text},{txtAccountName.Text},{ResultText}");
+                        sw.WriteLine("Password,Date,Platform,Account");
+                        sw.WriteLine($"{ResultText},{formattedDate},{txtPlatformName.Text},{txtAccountName.Text}");
                     }
                 }
             }

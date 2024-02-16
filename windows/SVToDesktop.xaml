@@ -10,6 +10,9 @@
     <Window.Resources>
         <!-- Define a style for the CheckBox -->
         <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#16c60c"/>
+            <Setter Property="BorderBrush" Value="#16c60c"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -30,6 +33,9 @@
                             </Trigger>
                             <Trigger Property="IsChecked" Value="False">
                                 <Setter TargetName="CheckMark" Property="Visibility" Value="Hidden"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Stroke" Value="Red"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -70,6 +76,7 @@
             <Setter Property="BorderBrush" Value="#16c60c"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#16c60c"/>
+            <Setter Property="CaretBrush" Value="White" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
@@ -250,24 +257,42 @@
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label x:Name="lblAccountName" Content="account name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
-            <TextBox x:Name="txtAccountName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="txtAccountName" Foreground="#16c60c" TabIndex="0" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontFamily="Bahnschrift"/>
 
             <Label x:Name="lblPlatformName" Content="platform name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
-            <TextBox x:Name="txtPlatformName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="txtPlatformName" Foreground="#16c60c" TabIndex="1" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontFamily="Bahnschrift"/>
 
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0">
-                <Button x:Name="btnSubmit" BorderBrush="#16c60c" Foreground="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="50" Height="25" Content="submit" Click="btnSubmit_Click" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,0,0" />
+                <Button x:Name="btnSubmit" BorderBrush="#16c60c" TabIndex="2" Foreground="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="50" Height="25" Content="submit" Click="btnSubmit_Click" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,0,0" />
                 <Rectangle x:Name="rectTickSubmit" Width="20" Height="20" Stroke="transparent" StrokeThickness="0" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Hidden">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="/Images/tick.png" Stretch="UniformToFill"/>
                     </Rectangle.Fill>
                 </Rectangle>
             </WrapPanel>
-            <CheckBox x:Name="chkXML" Content="XML" />
-            <CheckBox x:Name="chkJSON" Content="JSON" />
-            <CheckBox x:Name="chkCSV" Content="CSV" />
+
         </StackPanel>
 
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5">
+            <WrapPanel>
+                <CheckBox x:Name="chkXML" Style="{StaticResource CustomCheckBoxStyle}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Width="43" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0">
+                    <CheckBox.Content>
+                        <Image Source="Images/xml.png" Width="30" />
+                    </CheckBox.Content>
+                </CheckBox>
 
+                <CheckBox x:Name="chkJSON" Style="{StaticResource CustomCheckBoxStyle}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="45" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" >
+                    <CheckBox.Content>
+                        <Image Source="Images/json.png" Width="30" Height="30" />
+                    </CheckBox.Content>
+                </CheckBox>
+                
+                <CheckBox x:Name="chkCSV" Style="{StaticResource CustomCheckBoxStyle}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="39" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0" >
+                    <CheckBox.Content>
+                        <Image Source="Images/csv.png" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </CheckBox.Content>
+                </CheckBox>
+            </WrapPanel>
+        </StackPanel>
     </Grid>
 </Window>

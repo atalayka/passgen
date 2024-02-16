@@ -183,5 +183,10 @@
   <ItemGroup>
     <Resource Include="windows\Images\toSms.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\csv.png" />
+    <Resource Include="windows\Images\json.png" />
+    <Resource Include="windows\Images\xml.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

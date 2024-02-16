@@ -231,6 +231,7 @@ public partial class MainWindow : Window
     public interface IRecord
     {
         //save to diff platforms.
+        //mail, local, sms
         public void Save();
     }
 
