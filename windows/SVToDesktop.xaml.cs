@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
+using System.Text.Json;
 using static passgen.MainWindow;
 
 namespace passgen.windows
@@ -26,8 +28,6 @@ namespace passgen.windows
         {
             InitializeComponent();
         }
-
-
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -87,7 +87,7 @@ namespace passgen.windows
             }
         }
         public static string ResultText { get; set; }
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = (MainWindow)Application.Current.MainWindow;
             ResultText = main.ResultText;
@@ -95,6 +95,126 @@ namespace passgen.windows
             SaveTODesktopFile save = new SaveTODesktopFile(txtPlatformName, txtAccountName, ResultText);
             save.Save();
 
+
+            if (chkXML.IsChecked == true)
+            {
+                string xmlFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.xml";
+
+                if (File.Exists(xmlFilePath))
+                {
+                    // XML dosyasını yükle ve yeni veriyi ekle
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(xmlFilePath);
+
+                    XmlElement element = doc.CreateElement("password");
+                    element.SetAttribute("platform", txtPlatformName.Text);
+                    element.SetAttribute("account", txtAccountName.Text);
+                    element.SetAttribute("password", ResultText);
+                    doc.DocumentElement.AppendChild(element);
+
+                    doc.Save(xmlFilePath);
+                }
+                else
+                {
+                    // Yeni XML dosyası oluştur
+                    XmlDocument doc = new XmlDocument();
+                    XmlElement rootElement = doc.CreateElement("passwords");
+                    doc.AppendChild(rootElement);
+
+                    // Verileri XML'e ekleyin
+                    XmlElement element = doc.CreateElement("password");
+                    element.SetAttribute("platform", txtPlatformName.Text);
+                    element.SetAttribute("account", txtAccountName.Text);
+                    element.SetAttribute("password", ResultText);
+                    rootElement.AppendChild(element);
+
+                    doc.Save(xmlFilePath);
+                }
+            }
+
+            if (chkJSON.IsChecked == true)
+            {
+                string jsonFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.json";
+
+                if (File.Exists(jsonFilePath))
+                {
+                    // JSON dosyasını oku
+                    string json = File.ReadAllText(jsonFilePath);
+
+                    // Deserializasyon ile oku
+                    var data = JsonSerializer.Deserialize<object[]>(json);
+
+                    // Yeni veriyi oluştur
+                    var newData = new[]
+                    {
+            new { platform = txtPlatformName.Text, account = txtAccountName.Text, password = ResultText }
+        };
+
+                    // Verileri birleştir
+                    data = data.Concat(newData).ToArray();
+
+                    // Formatlama seçenekleri ile Serialize
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    string updatedJson = JsonSerializer.Serialize(data, options);
+
+                    // JSON dosyasına kaydet
+                    File.WriteAllText(jsonFilePath, updatedJson);
+                }
+                else
+                {
+                    // Yeni JSON dosyası oluştur
+                    var data = new[]
+                    {
+            new { platform = txtPlatformName.Text, account = txtAccountName.Text, password = ResultText }
+        };
+
+                    // Formatlama seçenekleri ile Serialize
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    string json = JsonSerializer.Serialize(data, options);
+
+                    // JSON dosyasına kaydet
+                    File.WriteAllText(jsonFilePath, json);
+                }
+            }
+
+
+            if (chkCSV.IsChecked == true)
+            {
+                string csvFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.csv";
+
+                if (File.Exists(csvFilePath))
+                {
+                    // CSV dosyasını oku ve yeni veriyi ekle
+                    var lines = File.ReadAllLines(csvFilePath);
+
+                    using (StreamWriter sw = new StreamWriter(csvFilePath))
+                    {
+                        foreach (var line in lines)
+                        {
+                            sw.WriteLine(line);
+                        }
+
+                        sw.WriteLine($"{txtPlatformName.Text},{txtAccountName.Text},{ResultText}");
+                    }
+                }
+                else
+                {
+                    // Yeni CSV dosyası oluştur
+                    using (StreamWriter sw = new StreamWriter(csvFilePath))
+                    {
+                        sw.WriteLine("Platform,Account,Password");
+                        sw.WriteLine($"{txtPlatformName.Text},{txtAccountName.Text},{ResultText}");
+                    }
+                }
+            }
+
+
+
+            rectTickSubmit.Visibility = Visibility.Visible;
+            await Task.Delay(400);
+            rectTickSubmit.Visibility = Visibility.Hidden;
+            await Task.Delay(150);
+            this.Close();
         }
     }
 }

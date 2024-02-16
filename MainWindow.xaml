@@ -265,7 +265,7 @@
             </WrapPanel>
 
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="btnGenerate" Style="{StaticResource CustomButtonStyle}" Padding="0,0,0,5"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" BorderBrush="#16c60c" Foreground="#16c60c" Content="generate" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGenerate_Click" Width="70" Height="28" FontSize="15" FontStretch="Medium" FontWeight="Medium"/>
+                <Button x:Name="btnGenerate" Style="{StaticResource CustomButtonStyle}" Padding="0,0,0,5"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Black" BorderBrush="#16c60c" Foreground="#16c60c" Content="generate" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGenerate_Click" Width="70" Height="28" FontSize="14" FontStretch="Medium" FontWeight="Medium"/>
             </WrapPanel>
         </StackPanel>
 

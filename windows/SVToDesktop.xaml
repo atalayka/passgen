@@ -226,7 +226,7 @@
         <!-- Define a style for the Slider -->
 
     </Window.Resources>
-    
+
     <Grid Width="450" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Canvas x:Name="SiluetCanvas" HorizontalAlignment="Center" Visibility="Hidden" VerticalAlignment="Center" Panel.ZIndex="-1" Opacity="0.8">
             <Canvas.Background>
@@ -250,14 +250,24 @@
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label x:Name="lblAccountName" Content="account name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
-            <TextBox x:Name="txtAccountName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="15" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10"/>
-            
+            <TextBox x:Name="txtAccountName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontFamily="Bahnschrift"/>
+
             <Label x:Name="lblPlatformName" Content="platform name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
-            <TextBox x:Name="txtPlatformName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="15" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20"/>
- 
-            <Button x:Name="btnSubmit" BorderBrush="#16c60c" Foreground="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="50" Height="25" Content="submit" Click="btnSubmit_Click" />
+            <TextBox x:Name="txtPlatformName" Foreground="#16c60c" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontFamily="Bahnschrift"/>
+
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0">
+                <Button x:Name="btnSubmit" BorderBrush="#16c60c" Foreground="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="50" Height="25" Content="submit" Click="btnSubmit_Click" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,0,0" />
+                <Rectangle x:Name="rectTickSubmit" Width="20" Height="20" Stroke="transparent" StrokeThickness="0" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Hidden">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Images/tick.png" Stretch="UniformToFill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </WrapPanel>
+            <CheckBox x:Name="chkXML" Content="XML" />
+            <CheckBox x:Name="chkJSON" Content="JSON" />
+            <CheckBox x:Name="chkCSV" Content="CSV" />
         </StackPanel>
-        
-           
+
+
     </Grid>
 </Window>
