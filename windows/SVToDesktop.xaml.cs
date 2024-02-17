@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml;
 using System.Text.Json;
 using static passgen.MainWindow;
@@ -37,10 +29,8 @@ namespace passgen.windows
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
             Point currentPosition = e.GetPosition(this);
-
             double mouseX = currentPosition.X - 260;
             double mouseY = currentPosition.Y - 190;
-
             Canvas.SetLeft(SiluetCanvas.Children[0], mouseX);
             Canvas.SetTop(SiluetCanvas.Children[0], mouseY);
         }
@@ -61,9 +51,7 @@ namespace passgen.windows
             public string platform { get; set; }
             public string account { get; set; }
             public string result { get; set; }
-
             string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
-
             public SaveTODesktopFile(TextBox txtPlatformName, TextBox txtAccountName, string resultText)
             {
                 platform = txtPlatformName.Text;
@@ -85,21 +73,27 @@ namespace passgen.windows
                 }
             }
         }
-        public static string ResultText { get; set; }
-        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
+
+        public interface IRecordFormat
         {
-            string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
+            public void Save(string resultText, string formattedDate, string platformName, string accountName);
+        }
 
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            ResultText = main.ResultText;
+        public class SaveWithXml : IRecordFormat
+        {
+            private readonly TextBox txtPlatformName;
+            private readonly TextBox txtAccountName;
 
-            SaveTODesktopFile save = new SaveTODesktopFile(txtPlatformName, txtAccountName, ResultText);
-            save.Save();
+            public SaveWithXml(TextBox platformName, TextBox accountName)
+            {
+                txtPlatformName = platformName;
+                txtAccountName = accountName;
+            }
 
-
-            if (chkXML.IsChecked == true)
+            public void Save(string resultText, string formattedDate, string platformName, string accountName)
             {
                 string xmlFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.xml";
+
 
                 if (File.Exists(xmlFilePath))
                 {
@@ -134,8 +128,21 @@ namespace passgen.windows
                     doc.Save(xmlFilePath);
                 }
             }
+        }
 
-            if (chkJSON.IsChecked == true)
+        public class SaveWithJson : IRecordFormat
+        {
+            private readonly TextBox txtPlatformName;
+            private readonly TextBox txtAccountName;
+
+
+            public SaveWithJson(TextBox platformName, TextBox accountName)
+            {
+                txtPlatformName = platformName;
+                txtAccountName = accountName;
+            }
+
+            public void Save(string resultText, string formattedDate, string platformName, string accountName)
             {
                 string jsonFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.json";
 
@@ -179,15 +186,24 @@ namespace passgen.windows
                     File.WriteAllText(jsonFilePath, json);
                 }
             }
+        }
 
+        public class SaveWithCsv : IRecordFormat
+        {
+            private readonly TextBox txtPlatformName;
+            private readonly TextBox txtAccountName;
 
-            if (chkCSV.IsChecked == true)
+            public SaveWithCsv(TextBox platformName, TextBox accountName)
+            {
+                txtPlatformName = platformName;
+                txtAccountName = accountName;
+            }
+            public void Save(string resultText, string formattedDate, string platformName, string accountName)
             {
                 string csvFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\passwords.csv";
 
                 if (File.Exists(csvFilePath))
                 {
-                    // CSV dosyasını oku ve yeni veriyi ekle
                     var lines = File.ReadAllLines(csvFilePath);
 
                     using (StreamWriter sw = new StreamWriter(csvFilePath))
@@ -210,8 +226,35 @@ namespace passgen.windows
                     }
                 }
             }
+        }
+
+        public static string ResultText { get; set; }
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            string formattedDate = DateTime.Now.ToString("MM/dd/yyyy");
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            ResultText = main.ResultText;
+            SaveTODesktopFile save = new SaveTODesktopFile(txtPlatformName, txtAccountName, ResultText);
+            save.Save();
+
+            if (chkXML.IsChecked == true)
+            {
+                SaveWithXml saveWithXml = new SaveWithXml(txtPlatformName, txtAccountName);
+                saveWithXml.Save(ResultText, formattedDate, txtPlatformName.Text, txtAccountName.Text);
+            }
+
+            if (chkJSON.IsChecked == true)
+            {
+                SaveWithJson saveWithJson = new SaveWithJson(txtPlatformName, txtAccountName);
+                saveWithJson.Save(ResultText, formattedDate, txtPlatformName.Text, txtAccountName.Text);
+            }
 
 
+            if (chkCSV.IsChecked == true) //checkboxa tıklandıgında
+            {
+                SaveWithCsv saveWithCsv = new SaveWithCsv(txtPlatformName, txtAccountName);
+                saveWithCsv.Save(ResultText, formattedDate, txtPlatformName.Text, txtAccountName.Text);
+            }
 
             rectTickSubmit.Visibility = Visibility.Visible;
             await Task.Delay(400);
