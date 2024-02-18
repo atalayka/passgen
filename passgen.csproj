@@ -102,6 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="windows\SaveToMail.xaml.cs">
+      <DependentUpon>SaveToMail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\SaveToSms.xaml.cs">
       <DependentUpon>SaveToSms.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windows\SaveToMail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\SaveToSms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,9 +206,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="windows\Images\turkiye.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="windows\turkiye.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

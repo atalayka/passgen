@@ -28,7 +28,6 @@ public partial class MainWindow : Window
         public void GeneratePassword();
     }
 
-
     public string ResultText
     {
         get { return txtResult.Text; }

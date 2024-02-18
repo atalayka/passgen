@@ -27,7 +27,7 @@ namespace passgen.windows
             InitializeComponent();
         }
 
-        class SmsSender
+        public class SmsSender
         {
             private string _accountName;
             private string _platformName;
@@ -41,16 +41,21 @@ namespace passgen.windows
                 _phoneNumber = txtPhoneNumber.Text;
             }
 
+            public static string ResultText { get; private set; }
+
             public void SendSMS()
             {
+                MainWindow main = (MainWindow)Application.Current.MainWindow;
+                ResultText = main.ResultText;
+
                 var accountSid = Environment.GetEnvironmentVariable("ACCOUNTSID_TWILIO");
                 var authToken = Environment.GetEnvironmentVariable("AUTHTOKEN_TWILIO");
-                TwilioClient.Init(accountSid, authToken);
+                TwilioClient.Init(accountSid, authToken);               
 
                 var messageOptions = new CreateMessageOptions(
                   new PhoneNumber(_phoneNumber));
                 messageOptions.From = new PhoneNumber("+19852274821");
-                messageOptions.Body = $"PASSWORD:{/*buraya üretilen parola gelecek!*/}." +
+                messageOptions.Body = $"PASSWORD:  {ResultText}." +
                     $" ACCOUNT: {_accountName}." +
                     $" PLATFORM: {_platformName}.";
 
@@ -61,10 +66,17 @@ namespace passgen.windows
         }
 
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             SmsSender smsSender = new SmsSender(txtAccountName, txtPlatformName, txtPhoneNumber);
             smsSender.SendSMS();
+
+            rectTickSubmit.Visibility = Visibility.Visible;
+            await Task.Delay(400);
+            rectTickSubmit.Visibility = Visibility.Hidden;
+            await Task.Delay(150);
+            this.Close();
+
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
