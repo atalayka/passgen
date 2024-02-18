@@ -207,5 +207,11 @@
   <ItemGroup>
     <Resource Include="windows\Images\turkiye.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

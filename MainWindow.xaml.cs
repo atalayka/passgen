@@ -251,7 +251,8 @@ public partial class MainWindow : Window
 
     private void btnToMail_Click(object sender, RoutedEventArgs e)
     {
-
+        SaveToMail saveToMail = new();
+        saveToMail.Show();
     }
 
     private void btnToSms_Click(object sender, RoutedEventArgs e)

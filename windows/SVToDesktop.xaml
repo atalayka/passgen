@@ -244,10 +244,10 @@
             </Canvas.Effect>
             <Ellipse Fill="White" Width="60" Height="60" />
         </Canvas>
-        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="30" Margin="0,2.75,2.75,0">
-            <Button x:Name="btnClose" BorderBrush="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30" Click="btnClose_Click">
+        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="2.75,2.75,2.75,0">
+            <Button x:Name="btnClose" BorderBrush="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30" Click="btnClose_Click" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/close.png" Stretch="UniformToFill" TileMode="Tile"/>
+                    <ImageBrush ImageSource="Images/back.png" Stretch="UniformToFill" TileMode="Tile"/>
                 </Button.Background>
                 <Button.Effect>
                     <BlurEffect Radius="2" KernelType="Gaussian" RenderingBias="Quality"/>

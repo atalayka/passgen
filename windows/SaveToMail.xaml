@@ -244,10 +244,10 @@
             </Canvas.Effect>
             <Ellipse Fill="White" Width="60" Height="60" />
         </Canvas>
-        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Height="30" Margin="0,2.75,2.75,0">
+        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="2.75,2.75,2.75,0">
             <Button x:Name="btnClose" BorderBrush="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30" Click="btnClose_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/close.png" Stretch="UniformToFill" TileMode="Tile"/>
+                    <ImageBrush ImageSource="Images/back.png" Stretch="UniformToFill" TileMode="Tile"/>
                 </Button.Background>
                 <Button.Effect>
                     <BlurEffect Radius="2" KernelType="Gaussian" RenderingBias="Quality"/>
@@ -260,10 +260,11 @@
             <TextBox x:Name="txtAccountName" Foreground="#16c60c" TabIndex="0" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontFamily="Bahnschrift"/>
 
             <Label x:Name="lblPlatformName" Content="platform name" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
-            <TextBox x:Name="txtPlatformName" Foreground="#16c60c" TabIndex="1" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontFamily="Bahnschrift" PreviewKeyDown="txtPlatformName_PreviewKeyDown"/>
+            <TextBox x:Name="txtPlatformName" Foreground="#16c60c" TabIndex="1" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontFamily="Bahnschrift"/>
 
             <Label x:Name="lblMailAddress" Content="mail address" Foreground="#16c60c" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="14"/>
-            <TextBox x:Name="txtMailAddress" Foreground="#16c60c"    TabIndex="1" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontFamily="Bahnschrift" MaxLines="1" MaxLength="13" TextChanged="txtPhoneNumber_TextChanged"/>
+            <TextBox x:Name="txtMailAddress" Foreground="#16c60c"    TabIndex="1" Style="{StaticResource CustomTextboxStyle}" FontSize="16" Width="120" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontFamily="Bahnschrift" MaxLines="1" MaxLength="99">
+            </TextBox>
 
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0">
                 <Button x:Name="btnSubmit" BorderBrush="#16c60c" TabIndex="2" Foreground="#16c60c" Style="{StaticResource CustomButtonStyle}" Width="50" Height="25" Content="submit" Click="btnSubmit_Click" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4,0,0,0" />

@@ -23,5 +23,36 @@ namespace passgen.windows
         {
             InitializeComponent();
         }
+
+        private void Window_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SiluetCanvas.Visibility = Visibility.Visible;
+        }
+
+        private void Window_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SiluetCanvas.Visibility = Visibility.Hidden;
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point currentPosition = e.GetPosition(this);
+
+            double mouseX = currentPosition.X - 260;
+            double mouseY = currentPosition.Y - 190;
+
+            Canvas.SetLeft(SiluetCanvas.Children[0], mouseX);
+            Canvas.SetTop(SiluetCanvas.Children[0], mouseY);
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
