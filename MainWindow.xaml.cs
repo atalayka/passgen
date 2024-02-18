@@ -252,13 +252,12 @@ public partial class MainWindow : Window
 
     private void btnToMail_Click(object sender, RoutedEventArgs e)
     {
-        SVToMail saveToMail = new();
-        saveToMail.Show();
+
     }
 
     private void btnToSms_Click(object sender, RoutedEventArgs e)
     {
-        SVToSMS sVToSMS = new();
+        SaveToSms sVToSMS = new();
         sVToSMS.Show();
     }
 }

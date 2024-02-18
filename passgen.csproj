@@ -108,12 +108,6 @@
     <Compile Include="windows\SVToDesktop.xaml.cs">
       <DependentUpon>SVToDesktop.xaml</DependentUpon>
     </Compile>
-    <Compile Include="windows\SVToMail.xaml.cs">
-      <DependentUpon>SVToMail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="windows\SVToSMS.xaml.cs">
-      <DependentUpon>SVToSMS.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -131,14 +125,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\SVToDesktop.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="windows\SVToMail.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="windows\SVToSMS.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,6 +196,12 @@
     <Resource Include="windows\Images\csv.png" />
     <Resource Include="windows\Images\json.png" />
     <Resource Include="windows\Images\xml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\Images\turkiye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="windows\turkiye.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
