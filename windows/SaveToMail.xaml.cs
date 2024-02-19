@@ -37,7 +37,7 @@ namespace passgen.windows
                     smtp.Connect("smtp.gmail.com", 587, false);
 
                     // Note: only needed if the SMTP server requires authentication
-                    smtp.Authenticate("passgen2024@gmail.com", "kPTIt4ESMsvreKHp");
+                    smtp.Authenticate("passgen2024@gmail.com", "xxxxxxxxxx");
 
                     smtp.Send(email);
                     smtp.Disconnect(true);
