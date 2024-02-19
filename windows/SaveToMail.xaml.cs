@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace passgen.windows
 {
@@ -22,6 +14,35 @@ namespace passgen.windows
         public SaveToMail()
         {
             InitializeComponent();
+        }
+
+
+        public class MailSender()
+        {
+            public static void SendMail()
+            {
+                var email = new MimeMessage();
+
+                email.From.Add(new MailboxAddress("Sender Name", "passgen2024@gmail.com"));
+                email.To.Add(new MailboxAddress("Receiver Name", "kabakciatalay@gmail.com"));
+
+                email.Subject = "Testing out email sending";
+                email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+                {
+                    Text = "<b>Hello all the way from the land of C#</b>"
+                };
+
+                using (var smtp = new SmtpClient())
+                {
+                    smtp.Connect("smtp.gmail.com", 587, false);
+
+                    // Note: only needed if the SMTP server requires authentication
+                    smtp.Authenticate("passgen2024@gmail.com", "kPTIt4ESMsvreKHp");
+
+                    smtp.Send(email);
+                    smtp.Disconnect(true);
+                }
+            }
         }
 
         private void Window_MouseEnter(object sender, MouseEventArgs e)
@@ -47,7 +68,7 @@ namespace passgen.windows
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MailSender.SendMail();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
