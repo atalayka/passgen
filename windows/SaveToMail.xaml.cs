@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MailKit.Net.Smtp;
-using MimeKit;
+using System.Net.Mail;
+using System.Net;
 
 namespace passgen.windows
 {
@@ -16,34 +17,32 @@ namespace passgen.windows
             InitializeComponent();
         }
 
-
         public class MailSender()
         {
-            public static void SendMail()
+            public void SendMail()
             {
-                var email = new MimeMessage();
+                string fromMail = "passgen2024@gmail.com";
+                string fromPassword = "jbtmbdvgtjnxoxvv";
 
-                email.From.Add(new MailboxAddress("Sender Name", "passgen2024@gmail.com"));
-                email.To.Add(new MailboxAddress("Receiver Name", "kabakciatalay@gmail.com"));
+                MailMessage mail = new();
+                mail.From = new MailAddress(fromMail);
+                mail.Subject = "password changes";
+                mail.To.Add(new MailAddress("passgen2024@gmail.com"));
+                mail.Body = "<h1>Passgen</h1> </br>" +
+                    $"{}";
 
-                email.Subject = "Testing out email sending";
-                email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+                mail.IsBodyHtml = true;
+
+                var smtpClient = new SmtpClient("smtp.gmail.com")
                 {
-                    Text = "<b>Hello all the way from the land of C#</b>"
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromMail, fromPassword),
+                    EnableSsl = true,
                 };
-
-                using (var smtp = new SmtpClient())
-                {
-                    smtp.Connect("smtp.gmail.com", 587, false);
-
-                    // Note: only needed if the SMTP server requires authentication
-                    smtp.Authenticate("passgen2024@gmail.com", "xxxxxxxxxx");
-
-                    smtp.Send(email);
-                    smtp.Disconnect(true);
-                }
+                smtpClient.Send(mail);
             }
         }
+
 
         private void Window_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -68,7 +67,8 @@ namespace passgen.windows
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            MailSender.SendMail();
+            MailSender mailSender = new();
+            mailSender.SendMail();  
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
