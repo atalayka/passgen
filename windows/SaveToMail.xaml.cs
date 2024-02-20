@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Net.Mail;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace passgen.windows
 {
@@ -17,8 +18,24 @@ namespace passgen.windows
             InitializeComponent();
         }
 
-        public class MailSender()
+
+        public class MailSender
         {
+            private string AccountName { get; set; }
+            private string PlatformName { get; set; }
+            private string MailAddress { get; set; }
+            private string Password { get; set; }
+
+            public MailSender(TextBox txtAccountName, TextBox txtPlatformName, TextBox txtMailAddress)
+            {
+                MainWindow main = (MainWindow)Application.Current.MainWindow;
+
+                AccountName = txtAccountName.Text;
+                PlatformName = txtPlatformName.Text;
+                MailAddress = txtMailAddress.Text;
+                Password = main.ResultText;
+            }
+
             public void SendMail()
             {
                 string fromMail = "passgen2024@gmail.com";
@@ -27,9 +44,12 @@ namespace passgen.windows
                 MailMessage mail = new();
                 mail.From = new MailAddress(fromMail);
                 mail.Subject = "password changes";
-                mail.To.Add(new MailAddress("passgen2024@gmail.com"));
-                mail.Body = "<h1>Passgen</h1> </br>" +
-                    $"{}";
+                mail.To.Add(new MailAddress($"{MailAddress}"));
+                mail.Body = "<h2>Passgen</h2> </br>" +
+                    $"<h4> Account:   {AccountName} </h4> </br>" +
+                    $"<h4> Platform:  {PlatformName} </h4> </br>" +
+                    $"<h4> Password:  {Password} </h4> </br>" +
+                    $"For your security, please avoid keeping passwords in email accounts that have low security.";
 
                 mail.IsBodyHtml = true;
 
@@ -65,10 +85,18 @@ namespace passgen.windows
             Canvas.SetTop(SiluetCanvas.Children[0], mouseY);
         }
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            MailSender mailSender = new();
-            mailSender.SendMail();  
+            MailSender mailSender = new MailSender(txtAccountName, txtPlatformName, txtMailAddress);
+            mailSender.SendMail();
+
+            rectTickSubmit.Visibility = Visibility.Visible;
+            await Task.Delay(400);
+            rectTickSubmit.Visibility = Visibility.Hidden;
+            await Task.Delay(150);
+            this.Close();
+
+
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
